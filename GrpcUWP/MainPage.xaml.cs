@@ -35,10 +35,17 @@ namespace GrpcUWP
         {
             try
             {
+                //Templorarily accept any cert with below code for gRPC communication.
+                HttpClientHandler handler = new HttpClientHandler();
+                handler.ServerCertificateCustomValidationCallback =
+            HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+
                 var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions
                 {
-                    HttpHandler = new GrpcWebHandler(new HttpClientHandler())
-                });
+                    
+                HttpHandler = new GrpcWebHandler(handler)
+
+                }) ; 
 
                 var client = new Greeter.GreeterClient(channel);
                 var response = await client.SayHelloAsync(new HelloRequest { Name = " UWP " });
