@@ -9,7 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel>
-        <Button Click="Button_Click" Margin="0,100">Send gRPC Request</Button>
+        <Button Click="Button_Click" Margin="0,100">Send gRPC Request to .Net core 5001</Button>
+        <Button Click="Button_Click_1" Margin="0,100">Send gRPC Request to WPF </Button>
         <TextBox x:Name="MyMessage"></TextBox>
     </StackPanel>
 </Page>

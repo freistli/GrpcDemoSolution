@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
         <Button Click="Button_Click" Margin="0,100">Send gRPC Request</Button>
+        <Button Click="Button_Click_1" >Send gRPC Request to Console</Button>
         <TextBox x:Name="MyMessage"></TextBox>
     </StackPanel>
 </Window>

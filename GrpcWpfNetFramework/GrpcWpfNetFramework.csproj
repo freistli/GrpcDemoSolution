@@ -111,6 +111,10 @@
       <Project>{9a64eb74-5fff-4ce6-8809-05d32b71f40b}</Project>
       <Name>GrpcNetStandardClass</Name>
     </ProjectReference>
+    <ProjectReference Include="..\grpcwpfserver.proto\grpcwpfserver.proto.csproj">
+      <Project>{9a94a98a-f718-4121-aa35-935ba0b2a829}</Project>
+      <Name>grpcwpfserver.proto</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

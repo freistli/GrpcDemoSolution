@@ -16,6 +16,7 @@ using GrpcNetStandardClass;
 using Grpc.Core;
 using Grpc.Net.Client;
 using System.Net.Http;
+using GrpcService;
 
 namespace GrpcWpfNetFramework
 {
@@ -43,6 +44,31 @@ namespace GrpcWpfNetFramework
                 var client = new Greeter.GreeterClient(channel);
                 var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET Framework" });
                 MyMessage.Text = response.Message;
+            }
+            catch (Exception ex)
+            {
+                MyMessage.Text = ex.ToString();
+            }
+        }
+
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var channel2 = GrpcChannel.ForAddress("http://localhost:8099");
+
+                var client2 = new Reciever.RecieverClient(channel2);
+
+                while (true)
+                {
+                    var response2 = await client2.ShowSubtitleAsync(new Subtitle { Message = "vnotessubtitlewpf" });
+
+                    if (MyMessage.Text != response2.Message)
+                    {
+                        MyMessage.Text = response2.Message;
+                    }
+                    Task.Delay(1000).Wait();
+                }
             }
             catch (Exception ex)
             {

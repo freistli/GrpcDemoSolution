@@ -1,6 +1,7 @@
 ﻿using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
 using GrpcNetStandardClass;
+using GrpcService;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,7 +40,7 @@ namespace GrpcUWP
                 HttpClientHandler handler = new HttpClientHandler();
                 handler.ServerCertificateCustomValidationCallback =
             HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-
+                
                 var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions
                 {
                     
@@ -49,6 +50,30 @@ namespace GrpcUWP
 
                 var client = new Greeter.GreeterClient(channel);
                 var response = await client.SayHelloAsync(new HelloRequest { Name = " UWP " });
+                MyMessage.Text = response.Message;
+            }
+            catch (Exception ex)
+            {
+                MyMessage.Text = ex.ToString();
+            }
+        }
+
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //Templorarily accept any cert with below code for gRPC communication.
+                /*
+                HttpClientHandler handler = new HttpClientHandler();
+                handler.ServerCertificateCustomValidationCallback =
+            HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                */
+                var handler = new WinHttpHandler();
+                //handler.ServerCertificateValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                var channel = GrpcChannel.ForAddress("http://localhost:8099") ;
+
+                var client = new Reciever.RecieverClient(channel);
+                var response = await client.ShowSubtitleAsync(new Subtitle { Message = " UWP " });
                 MyMessage.Text = response.Message;
             }
             catch (Exception ex)
