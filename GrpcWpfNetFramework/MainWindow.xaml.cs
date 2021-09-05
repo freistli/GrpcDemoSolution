@@ -61,7 +61,7 @@ namespace GrpcWpfNetFramework
 
                 while (true)
                 {
-                    var response2 = await client2.ShowSubtitleAsync(new Subtitle { Message = "vnotessubtitlewpf" });
+                    var response2 = await client2.ShowSubtitleAsync(new Subtitle { Message = "test" });
 
                     if (MyMessage.Text != response2.Message)
                     {
