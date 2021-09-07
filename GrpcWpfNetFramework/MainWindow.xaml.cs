@@ -67,7 +67,7 @@ namespace GrpcWpfNetFramework
                     {
                         MyMessage.Text = response2.Message;
                     }
-                    Task.Delay(1000).Wait();
+                    await Task.Delay(1000);
                 }
             }
             catch (Exception ex)

@@ -23,10 +23,20 @@ namespace grpcwpfserver.Services
 
         public override Task<Reply> ShowSubtitle(Subtitle request, ServerCallContext context)
         {
-            return Task.FromResult(new Reply
+            if (request.Message == "test")
             {
-                Message = "200 Okay"
-            }) ;
+                return Task.FromResult(new Reply
+                {
+                    Message = "WPF Server Returns: " + DateTime.Now.ToString()
+                });
+            }
+            else
+            {
+                return Task.FromResult(new Reply
+                {
+                    Message = "WPF Server Returns 200 Okay"
+                });
+            }
         }
     }
 }

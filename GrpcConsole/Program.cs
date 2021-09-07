@@ -18,13 +18,13 @@ namespace GrpcConsole
                               new HelloRequest { Name = "GreeterClient" });
             Console.WriteLine("Greeting: " + reply.Message);
             
-            var channel2 = GrpcChannel.ForAddress("http://localhost:8199");
+            var channel2 = GrpcChannel.ForAddress("http://localhost:8099");
 
             var client2 = new Reciever.RecieverClient(channel2);
             var currentMessage = "";
             while (true)
             {
-                var response2 = await client2.ShowSubtitleAsync(new Subtitle { Message = "vnotessubtitlewpf" });
+                var response2 = await client2.ShowSubtitleAsync(new Subtitle { Message = "test" });
 
                 if (currentMessage != response2.Message)
                 {
